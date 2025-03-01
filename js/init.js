@@ -36,12 +36,16 @@ function tabClick(clickedName) {
 function renderContent() {
   var content = document.getElementById('content_' + selected);
   var button = document.getElementById('copy-button');
+  var button1 = document.getElementById('upload-button');
+  var button2 = document.getElementById('compile-button');
   // Initialize the pane.
   if (content.id == 'content_blocks') {
     // If the workspace was changed by the XML tab, Firefox will have performed
     // an incomplete rendering due to Blockly being invisible.  Rerender.
     Blockly.mainWorkspace.render();
     button.style.display = "none";
+    button1.style.display = "none";
+    button2.style.display = "none";
   } else if (content.id == 'content_arduino') {
     // content.innerHTML = Blockly.Arduino.workspaceToCode();
     var arduinoTextarea = document.getElementById('content_arduino');
@@ -56,6 +60,8 @@ function renderContent() {
     // arduinoTextarea.focus();
     // }
     button.style.display = "";
+    button1.style.display = "";
+    button2.style.display = "";
   }
 }
 

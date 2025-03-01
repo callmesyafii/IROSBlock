@@ -177,6 +177,12 @@
                         <td id="tab_arduino" class="taboff" onclick="tabClick('arduino')"></td>
                         <td class="tabmin"> </td>
                         <td class="tabmax">
+                            <a href="#" class="hide-link tooltipped" id="compile-button" data-tooltip="Compile" data-clipboard-target="#content_arduino" onclick="generateBin()">
+                                <i class="small material-icons">check</i>
+                            </a>
+                            <a href="#" class="hide-link tooltipped" id="upload-button" data-tooltip="Upload" data-clipboard-target="#content_arduino">
+                                <i class="small material-icons">arrow_upward</i>
+                            </a>
                             <a href="#" class="hide-link tooltipped" id="copy-button" data-tooltip="I am tooltip" data-clipboard-target="#content_arduino">
                                 <i class="small material-icons">content_copy</i>
                             </a>
@@ -935,8 +941,66 @@
 <block type="involt_receivevalue"></block>
 </category--></xml>
 
-    <div class="info">
+    <div class="info" id="status">
     </div>
+    <a href="#" id="downloadLink" download="arduino_code.ino" style="display: none;">
+        <button id="compile_button">Compile</button>
+    </a>
 </body>
+<script>
+    async function generateBin() {
+        const code = document.getElementById("content_arduino").value;
+        const button = document.getElementById("compile_button");
+        const statusText = document.getElementById("status");
+        const downloadLink = document.getElementById("downloadLink");
 
+        // Cek apakah textarea kosong
+        if (!code.trim()) {
+            statusText.innerText = "Error: Kode tidak boleh kosong!";
+            return;
+        }
+
+        // Nonaktifkan tombol saat proses berjalan
+        button.disabled = true;
+        button.innerText = "Compiling...";
+        statusText.innerText = "Compiling... Mohon tunggu.";
+
+        try {
+            const response = await fetch("http://localhost:5001/generate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ code })
+            });
+
+            if (!response.ok) {
+                throw new Error("Compilation failed");
+            }
+
+            // Konversi response menjadi blob (file)
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+
+            // Tampilkan link download
+            downloadLink.href = url;
+            downloadLink.style.display = "inline-block";
+            downloadLink.innerText = "";
+
+            // Otomatis download file setelah kompilasi berhasil
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "firmware.bin"; // Nama file yang akan diunduh
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            statusText.innerText = "Compilation successful!";
+        } catch (error) {
+            statusText.innerText = "Error: " + error.message;
+        } finally {
+            // Aktifkan kembali tombol setelah selesai
+            button.disabled = false;
+            button.innerText = "Generate .bin";
+        }
+    }
+</script>
 </html>
