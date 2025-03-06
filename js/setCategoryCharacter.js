@@ -40,6 +40,7 @@ function setCategoryCharacter() {
   $('#category_variables').attr('name',Blockly.Msg.CATEGORY_VARIABLES);
   $('#category_functions').attr('name',Blockly.Msg.CATEGORY_FUNCTIONS);
   $('#category_robot').attr('name',Blockly.Msg.CATEGORY_ROBOT);
+  $('#category_physics').attr('name', Blockly.Msg.CATEGORY_PHYSICS);
   //  $('#category_involt').attr('name',Blockly.Msg.CATEGORY_INVOLT);
   $('label[for="chbox_category_ethernet"]').text(Blockly.Msg.CATEGORY_ETHERNET);
   $('label[for="chbox_category_cloud_service"]').text(Blockly.Msg.CATEGORY_CLOUD_SERVICE);
@@ -60,4 +61,5 @@ function setCategoryCharacter() {
   $('label[for="chbox_category_i2c_matrix"]').text(Blockly.Msg.CATEGORY_I2C_MATRIX);
   $('label[for="chbox_category_i2c_sevenseg"]').text(Blockly.Msg.CATEGORY_I2C_SEVENSEG);
   $('label[for="chbox_category_other_sensor"]').text(Blockly.Msg.CATEGORY_OTHER_SENSOR);
+  $('label[for="chbox_category_physics"]').text(Blockly.Msg.CATEGORY_PHYSICS);
 }

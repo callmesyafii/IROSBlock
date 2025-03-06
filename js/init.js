@@ -146,7 +146,7 @@ function init() {
 
 function buildtoolBox() {
   var loadIds;
-  var base = "category_logic,category_loops,category_array,category_math,category_text,category_variables,category_functions,category_sep,category_initializes,category_inout,category_time,category_serial,category_interrupts,category_sep";
+  var base = "category_logic,category_loops,category_array,category_math,category_physics,category_text,category_variables,category_functions,category_sep,category_initializes,category_inout,category_time,category_serial,category_interrupts,category_sep";
 
   var option = window.localStorage.toolboxids;
 
@@ -376,6 +376,13 @@ function import_xml() {
 
 window.onload = function () {
   setScript();
+  // Tambahkan fungsi untuk memeriksa Blockly
+  if (typeof Blockly === "undefined") {
+      console.error("Blockly belum terdefinisi!");
+  } else {
+      console.log("Blockly sudah siap:", Blockly);
+      console.log("Blockly.Arduino:", Blockly.Arduino);
+  }
 };
 
 $(document).ready(function () {

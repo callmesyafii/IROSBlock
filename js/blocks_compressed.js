@@ -434,3 +434,31 @@ Blockly.ContextMenu.callbackFactory(this,d);a.push(b)},typeChangedHandler:functi
 Blockly.Blocks.variables_set={init:function(){this.setHelpUrl(Blockly.Msg.VARIABLES_SET_HELPURL);this.setColour(Blockly.Blocks.variables.HUE);this.interpolateMsg(Blockly.Msg.VARIABLES_SET_TITLE+" %1 %2"+Blockly.Msg.VARIABLES_SET_TAIL+" %3",["TYPE",new Blockly.FieldDropdown(Blockly.Variables.allTypes(),this.typeChangedHandler)],["VAR",new Blockly.FieldVariable(Blockly.Msg.VARIABLES_SET_ITEM,this.nameChangedHandler)],["VALUE",null,Blockly.ALIGN_RIGHT],Blockly.ALIGN_RIGHT);this.setPreviousStatement(!0);
 this.setNextStatement(!0);this.setTooltip(Blockly.Msg.VARIABLES_SET_TOOLTIP);this.contextMenuMsg_=Blockly.Msg.VARIABLES_SET_CREATE_GET;this.contextMenuType_="variables_get"},postInit:function(){var a=this.getFieldValue("VAR");(a=Blockly.Variables.typeOf(a,Blockly.mainWorkspace))&&this.setType(a)},getVars:function(){return[this.getFieldValue("VAR")]},setType:function(a){this.setFieldValue(a,"TYPE");this.getInput("VALUE").setCheck(a)},renameVar:function(a,b){Blockly.Names.equals(a,this.getFieldValue("VAR"))&&
 this.setFieldValue(b,"VAR")},typeOf:Blockly.Blocks.variables_get.typeOf,changeType:Blockly.Blocks.variables_get.changeType,customContextMenu:Blockly.Blocks.variables_get.customContextMenu,typeChangedHandler:Blockly.Blocks.variables_get.typeChangedHandler,nameChangedHandler:Blockly.Blocks.variables_get.nameChangedHandler};
+console.log(Blockly.Blocks); // Cek apakah Blockly.Blocks sudah ada
+
+if (typeof Blockly !== "undefined" && Blockly.Blocks) {
+    Blockly.Blocks['ohms_law'] = {
+        init: function() {
+            this.appendValueInput("VOLTAGE")
+                .setCheck("Number")
+                .appendField("Ohm's Law")
+                .appendField("Voltage (V)");
+            this.appendValueInput("RESISTANCE")
+                .setCheck("Number")
+                .appendField("Resistance (Ω)");
+            this.setOutput(true, "Number");
+            this.setColour(230);
+            this.setTooltip("Hitung arus berdasarkan hukum Ohm");
+            this.setHelpUrl("");
+        }
+    };
+} else {
+    console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
+}
+
+Blockly.Arduino.ohms_law = function() {
+    var voltage = Blockly.Arduino.valueToCode(this, 'VOLTAGE', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var resistance = Blockly.Arduino.valueToCode(this, 'RESISTANCE', Blockly.Arduino.ORDER_ATOMIC) || '1'; // Default to 1 to avoid division by zero
+    var current = `(${voltage} / ${resistance})`;
+    return [`${current}`, Blockly.Arduino.ORDER_NONE]; // Menggunakan ORDER_NONE
+};
