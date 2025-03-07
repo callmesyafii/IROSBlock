@@ -287,3 +287,9 @@ Blockly.Arduino.moles_from_mass = function() {
     var moles = `(${mass} / ${molar_mass})`; // Menghitung n
     return [`${moles}`, Blockly.Arduino.ORDER_NONE];
 };
+
+Blockly.Arduino.ph_calculation = function() {
+    var h_concentration = Blockly.Arduino.valueToCode(this, 'H_CONCENTRATION', Blockly.Arduino.ORDER_ATOMIC) || '1'; // Default to 1 to avoid log(0)
+    var ph = `(-log(${h_concentration}))`; // Menghitung pH
+    return [`${ph}`, Blockly.Arduino.ORDER_NONE];
+};

@@ -822,3 +822,20 @@ if (typeof Blockly !== "undefined" && Blockly.Blocks) {
 } else {
     console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
 }
+
+if (typeof Blockly !== "undefined" && Blockly.Blocks) {
+    Blockly.Blocks['ph_calculation'] = {
+        init: function() {
+            this.appendValueInput("H_CONCENTRATION")
+                .setCheck("Number")
+                .appendField("pH Calculation")
+                .appendField("H+ Concentration [mol/L]");
+            this.setOutput(true, "Number");
+            this.setColour(230);
+            this.setTooltip("Hitung pH menggunakan rumus pH = -log[H+]");
+            this.setHelpUrl("");
+        }
+    };
+} else {
+    console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
+}
