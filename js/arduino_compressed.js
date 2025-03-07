@@ -173,21 +173,6 @@ Blockly.Arduino.ultrasonic_setting=function(){var a=this.getFieldValue("TRIG"),b
 a+", LOW);\n  delayMicroseconds(2);\n  digitalWrite("+a+", HIGH);\n  delayMicroseconds(10);\n  digitalWrite("+a+", LOW);\n  long duration = pulseIn("+b+",HIGH,Sonic_Time_out);\n  if ( duration == 0 ){\n    duration = Sonic_Time_out;\n    digitalWrite("+c+", HIGH);\n    delay(25);\n    digitalWrite("+c+" ,LOW);\n    delay(225);\n  }\n  return duration;\n}\n";return""};
 Blockly.Arduino.ultrasonic_maxrange=function(){var a=this.getFieldValue("UNIT"),b=this.getFieldValue("MAXRANGE");Blockly.Arduino.definitions_.define_sonic_timeout="CM"==a?"int Sonic_Time_out = "+b+"*2*29;\n":"int Sonic_Time_out = "+b+"*2*72;\n";return""};Blockly.Arduino.ultrasonic_distance=function(){return["CM"==this.getFieldValue("UNIT")?"Sonic_Timing()/29/2":"Sonic_Timing()/74/2",Blockly.Arduino.ORDER_ATOMIC]};Blockly.Arduino.variables={};Blockly.Arduino.variables_get=function(a){return[Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"),Blockly.Variables.NAME_TYPE),Blockly.Arduino.ORDER_ATOMIC]};
 Blockly.Arduino.variables_set=function(a){var b=Blockly.Arduino.valueToCode(a,"VALUE",Blockly.Arduino.ORDER_ASSIGNMENT)||"0",c=Blockly.Arduino.variableDB_.getName(this.getFieldValue("VAR"),Blockly.Variables.NAME_TYPE);a=Blockly.Variables.allVariablesAndTypes(this.workspace);for(var d=0;d<a.length;d++)if(a[d][0]==c&&"Array"==a[d][1])return b="int "+a[d][0]+"[] = "+b+";\n",Blockly.Arduino.definitions_[a[d][0]]=b,"";return c+" = "+b+";\n"};
-// Blockly.Arduino['ohms_law'] = {
-//     init: function() {
-//         this.appendValueInput("VOLTAGE")
-//             .setCheck("Number")
-//             .appendField("Tegangan (V)");
-//         this.appendValueInput("RESISTANCE")
-//             .setCheck("Number")
-//             .appendField("Hambatan (Ω)");
-//         this.setOutput(true, "Number");
-//         this.setColour(230);
-//         this.setTooltip("Menghitung arus berdasarkan hukum Ohm");
-//         this.setHelpUrl("");
-//     }
-// };
-
 
 console.log(Blockly.Blocks); // Cek apakah Blockly.Blocks sudah ada
 
@@ -216,4 +201,31 @@ Blockly.Arduino.ohms_law = function() {
     var resistance = Blockly.Arduino.valueToCode(this, 'RESISTANCE', Blockly.Arduino.ORDER_ATOMIC) || '1'; // Default to 1 to avoid division by zero
     var current = `(${voltage} / ${resistance})`;
     return [`${current}`, Blockly.Arduino.ORDER_NONE]; // Menggunakan ORDER_NONE
+};
+
+if (typeof Blockly !== "undefined" && Blockly.Blocks) {
+    Blockly.Blocks['electric_power'] = {
+        init: function() {
+            this.appendValueInput("VOLTAGE")
+                .setCheck("Number")
+                .appendField("Electric Power")
+                .appendField("Voltage (V)");
+            this.appendValueInput("CURRENT")
+                .setCheck("Number")
+                .appendField("Current (I)");
+            this.setOutput(true, "Number");
+            this.setColour(230);
+            this.setTooltip("Hitung daya listrik menggunakan P = V x I");
+            this.setHelpUrl("");
+        }
+    };
+} else {
+    console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
+}
+
+Blockly.Arduino.electric_power = function() {
+    var voltage = Blockly.Arduino.valueToCode(this, 'VOLTAGE', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var current = Blockly.Arduino.valueToCode(this, 'CURRENT', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var power = `(${voltage} * ${current})`;
+    return [`${power}`, Blockly.Arduino.ORDER_NONE]; // Using ORDER_NONE
 };

@@ -462,3 +462,316 @@ Blockly.Arduino.ohms_law = function() {
     var current = `(${voltage} / ${resistance})`;
     return [`${current}`, Blockly.Arduino.ORDER_NONE]; // Menggunakan ORDER_NONE
 };
+
+Blockly.Blocks['electric_power'] = {
+    init: function() {
+        this.appendValueInput("VOLTAGE")
+            .setCheck("Number")
+            .appendField("Electric Power")
+            .appendField("Voltage (V)");
+        this.appendValueInput("CURRENT")
+            .setCheck("Number")
+            .appendField("Current (I)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Calculate electric power using P = V * I");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['capacitance'] = {
+    init: function() {
+        this.appendValueInput("CHARGE")
+            .setCheck("Number")
+            .appendField("Capacitance (C)")
+            .appendField("Charge (Q)");
+        this.appendValueInput("VOLTAGE")
+            .setCheck("Number")
+            .appendField("Voltage (V)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Calculate capacitance using C = Q / V");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['inductance'] = {
+    init: function() {
+        this.appendValueInput("N")
+            .setCheck("Number")
+            .appendField("Inductance (L)")
+            .appendField("Turns (N)");
+        this.appendValueInput("MU")
+            .setCheck("Number")
+            .appendField("Permeability (µ)");
+        this.appendValueInput("A")
+            .setCheck("Number")
+            .appendField("Area (A)");
+        this.appendValueInput("LENGTH")
+            .setCheck("Number")
+            .appendField("Length (l)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Calculate inductance using L = (N² * µ * A) / l");
+        this.setHelpUrl("");
+    }
+};
+
+// Define variable blocks
+Blockly.Blocks['voltage'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Voltage (V)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Voltage in volts");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['current'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Current (I)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Current in amperes");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['resistance'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Resistance (R)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Resistance in ohms");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['charge'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Charge (Q)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Charge in coulombs");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['permeability'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Permeability (µ)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Permeability in henries per meter");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['turns'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Turns (N)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Number of turns");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['area'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Area (A)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Area in square meters");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['length'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Length (l)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Length in meters");
+        this.setHelpUrl("");
+    }
+};
+
+// Update Ohm's Law block
+Blockly.Blocks['ohm_law'] = {
+    init: function() {
+        this.appendValueInput("V")
+            .setCheck("Number")
+            .appendField("Ohm's Law")
+            .appendField("Voltage (V)");
+        this.appendValueInput("R")
+            .setCheck("Number")
+            .appendField("Resistance (R)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Calculate current using I = V / R");
+        this.setHelpUrl("");
+    }
+};
+
+// Update Electric Power block
+Blockly.Blocks['electric_power'] = {
+    init: function() {
+        this.appendValueInput("V")
+            .setCheck("Number")
+            .appendField("Electric Power")
+            .appendField("Voltage (V)");
+        this.appendValueInput("I")
+            .setCheck("Number")
+            .appendField("Current (I)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Calculate power using P = V * I");
+        this.setHelpUrl("");
+    }
+};
+
+// Update Capacitance block
+Blockly.Blocks['capacitance'] = {
+    init: function() {
+        this.appendValueInput("Q")
+            .setCheck("Number")
+            .appendField("Capacitance (C)")
+            .appendField("Charge (Q)");
+        this.appendValueInput("V")
+            .setCheck("Number")
+            .appendField("Voltage (V)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Calculate capacitance using C = Q / V");
+        this.setHelpUrl("");
+    }
+};
+
+// Update Inductance block
+Blockly.Blocks['inductance'] = {
+    init: function() {
+        this.appendValueInput("N")
+            .setCheck("Number")
+            .appendField("Inductance (L)")
+            .appendField("Turns (N)");
+        this.appendValueInput("MU")
+            .setCheck("Number")
+            .appendField("Permeability (µ)");
+        this.appendValueInput("A")
+            .setCheck("Number")
+            .appendField("Area (A)");
+        this.appendValueInput("LENGTH")
+            .setCheck("Number")
+            .appendField("Length (l)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Calculate inductance using L = (N² * µ * A) / l");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['voltage'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Voltage (V)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input voltage value");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['current'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Current (A)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input current value");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['resistance'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Resistance (Ω)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input resistance value");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['charge'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Charge (C)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input charge value");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['permeability'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Permeability (H/m)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input permeability value");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['turns'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Turns");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input number of turns");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['area'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Area (m²)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input area value");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['length'] = {
+    init: function() {
+        this.appendValueInput("VALUE")
+            .setCheck("Number")
+            .appendField("Length (m)");
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip("Input length value");
+        this.setHelpUrl("");
+    }
+};
