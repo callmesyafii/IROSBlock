@@ -138,6 +138,7 @@ input.blocklyhtmlinput {
 }
 
 #content_area {
+  overflow: auto;
   height: 99%;
 }
 
@@ -153,12 +154,16 @@ input.blocklyhtmlinput {
   min-width: 200px;  
 } 
 
+#content_blocks{
+  height: 620px !important;
+  overflow: auto;
+}
+
 .info {
   font-family: 'Roboto', sans-serif;
   background: #343a40;
   padding: 10px;
   color: #ffffff;
-  border-radius: 5px;
   white-space: nowrap;
   position: absolute;
   bottom: 0;
