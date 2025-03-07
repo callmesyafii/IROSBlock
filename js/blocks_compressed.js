@@ -439,11 +439,12 @@ console.log(Blockly.Blocks); // Cek apakah Blockly.Blocks sudah ada
 if (typeof Blockly !== "undefined" && Blockly.Blocks) {
     Blockly.Blocks['ohms_law'] = {
         init: function() {
-            this.appendValueInput("VOLTAGE")
+            this.appendDummyInput() // Menambahkan label di atas
+                .appendField("Ohm's Law");
+            this.appendValueInput("VOLTAGE") // Input Voltage di bawah label
                 .setCheck("Number")
-                .appendField("Ohm's Law")
                 .appendField("Voltage (V)");
-            this.appendValueInput("RESISTANCE")
+            this.appendValueInput("RESISTANCE") // Input Resistance di bawah Voltage
                 .setCheck("Number")
                 .appendField("Resistance (Ω)");
             this.setOutput(true, "Number");
@@ -696,7 +697,7 @@ Blockly.Blocks['current'] = {
     init: function() {
         this.appendValueInput("VALUE")
             .setCheck("Number")
-            .appendField("Current (A)");
+            .appendField("Current (I)");
         this.setOutput(true, "Number");
         this.setColour(230);
         this.setTooltip("Input current value");
