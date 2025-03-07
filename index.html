@@ -964,7 +964,8 @@
 <script>
     async function generateBin() {
         const code = document.getElementById("content_arduino").value;
-        const button = document.getElementById("compile_button");
+        const button = document.getElementById("compile-button");
+        const Ubutton = document.getElementById("upload-button");
         const statusText = document.getElementById("status");
         const downloadLink = document.getElementById("downloadLink");
 
@@ -976,7 +977,8 @@
 
         // Nonaktifkan tombol saat proses berjalan
         button.disabled = true;
-        button.innerText = "Compiling...";
+        button.classList.add("compiling");
+        Ubutton.classList.add("compiling");
         statusText.innerText = "Compiling... Mohon tunggu.";
 
         try {
@@ -1013,8 +1015,11 @@
         } finally {
             // Aktifkan kembali tombol setelah selesai
             button.disabled = false;
-            button.innerText = "Generate .bin";
         }
+
+        
+        button.classList.remove("compiling");
+        Ubutton.classList.remove("compiling");
     }
 </script>
 </html>

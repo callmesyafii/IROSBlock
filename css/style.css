@@ -81,6 +81,12 @@ td {
   vertical-align: top;
 }
 
+.compiling {
+  opacity: 0;
+  transition: opacity 0.3s;
+  visibility: hidden;
+}
+
 .content {
   visibility: hidden;
   margin: 0;

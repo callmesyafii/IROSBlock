@@ -1,0 +1,45 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/aurie/.platformio/**",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/cores/esp32",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_wifi/include",
+                "C:/Users/aurie/.platformio/packages/toolchain-xtensa-esp32/xtensa-esp32-elf/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_event/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_netif/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_eth/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/tcpip_adapter/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/nghttp/port/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_timer/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/log/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_rom/include",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/variants/esp32",
+                "C:/Users/aurie/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}
