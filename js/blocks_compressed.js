@@ -439,12 +439,13 @@ console.log(Blockly.Blocks); // Cek apakah Blockly.Blocks sudah ada
 if (typeof Blockly !== "undefined" && Blockly.Blocks) {
     Blockly.Blocks['ohms_law'] = {
         init: function() {
-            this.appendDummyInput() // Menambahkan label di atas
-                .appendField("Ohm's Law");
-            this.appendValueInput("VOLTAGE") // Input Voltage di bawah label
+            this.appendDummyInput()
+                .appendField("Ohm's Law") // Label untuk Ohm's Law
+                .setAlign(Blockly.ALIGN_CENTRE); // Menyelaraskan label di tengah
+            this.appendValueInput("VOLTAGE")
                 .setCheck("Number")
                 .appendField("Voltage (V)");
-            this.appendValueInput("RESISTANCE") // Input Resistance di bawah Voltage
+            this.appendValueInput("RESISTANCE")
                 .setCheck("Number")
                 .appendField("Resistance (Ω)");
             this.setOutput(true, "Number");
@@ -776,3 +777,48 @@ Blockly.Blocks['length'] = {
         this.setHelpUrl("");
     }
 };
+
+if (typeof Blockly !== "undefined" && Blockly.Blocks) {
+    // Kategori Chemistry
+    Blockly.Blocks['ideal_gas_law'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Ideal Gas Law");
+            this.appendValueInput("N")
+                .setCheck("Number")
+                .appendField("n (moles)");
+            this.appendValueInput("R")
+                .setCheck("Number")
+                .appendField("R (gas constant)");
+            this.appendValueInput("T")
+                .setCheck("Number")
+                .appendField("T (temperature in K)");
+            this.setOutput(true, "Number");
+            this.setColour(230);
+            this.setTooltip("Calculate PV using Ideal Gas Law");
+            this.setHelpUrl("");
+        }
+    };
+} else {
+    console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
+}
+
+if (typeof Blockly !== "undefined" && Blockly.Blocks) {
+    Blockly.Blocks['moles_from_mass'] = {
+        init: function() {
+            this.appendValueInput("MASS")
+                .setCheck("Number")
+                .appendField("Moles from Mass")
+                .appendField("Mass (m)");
+            this.appendValueInput("MOLAR_MASS")
+                .setCheck("Number")
+                .appendField("Molar Mass (Mr)");
+            this.setOutput(true, "Number");
+            this.setColour(230);
+            this.setTooltip("Hitung jumlah mol dari massa menggunakan n = m / M_r");
+            this.setHelpUrl("");
+        }
+    };
+} else {
+    console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
+}

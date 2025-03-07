@@ -229,3 +229,61 @@ Blockly.Arduino.electric_power = function() {
     var power = `(${voltage} * ${current})`;
     return [`${power}`, Blockly.Arduino.ORDER_NONE]; // Using ORDER_NONE
 };
+
+if (typeof Blockly !== "undefined" && Blockly.Blocks) {
+    Blockly.Blocks['ideal_gas_law'] = {
+        init: function() {
+            this.appendValueInput("N", Blockly.Arduino.ORDER_ATOMIC)
+                .setCheck("Number")
+                .appendField("Ideal Gas Law")
+                .appendField("N (moles)");
+            this.appendValueInput("R", Blockly.Arduino.ORDER_ATOMIC)
+                .setCheck("Number")
+                .appendField("R (gas constant)");
+            this.appendValueInput("T", Blockly.Arduino.ORDER_ATOMIC)
+                .setCheck("Number")
+                .appendField("T (temperature in K)");
+            this.setOutput(true, "Number");
+            this.setColour(230);
+            this.setTooltip("Hitung tekanan gas menggunakan PV = nRT");
+            this.setHelpUrl("");
+        }
+    };
+} else {
+    console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
+}
+
+Blockly.Arduino.ideal_gas_law = function() {
+    var n = Blockly.Arduino.valueToCode(this, 'N', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var R = Blockly.Arduino.valueToCode(this, 'R', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var T = Blockly.Arduino.valueToCode(this, 'T', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var PV = `(${n} * ${R} * ${T})`; // Menghitung PV
+    return [`${PV}`, Blockly.Arduino.ORDER_NONE];
+};
+
+if (typeof Blockly !== "undefined" && Blockly.Blocks) {
+    Blockly.Blocks['moles_from_mass'] = {
+        init: function() {
+            this.appendValueInput("MASS", Blockly.Arduino.ORDER_ATOMIC)
+                .setCheck("Number")
+                .appendField("Moles from Mass")
+                .appendField("Mass (m)");
+            this.appendValueInput("MOLAR_MASS", Blockly.Arduino.ORDER_ATOMIC)
+                .setCheck("Number")
+                .appendField("Molar Mass (M_r)");
+            this.setOutput(true, "Number");
+            this.setColour(230);
+            this.setTooltip("Hitung jumlah mol dari massa menggunakan n = m / M_r");
+            this.setHelpUrl("");
+        }
+    };
+} else {
+    console.error("Blockly belum siap! Pastikan Blockly dimuat sebelum custom_blocks.js");
+}
+
+Blockly.Arduino.moles_from_mass = function() {
+    var mass = Blockly.Arduino.valueToCode(this, 'MASS', Blockly.Arduino.ORDER_ATOMIC) || '0';
+    var molar_mass = Blockly.Arduino.valueToCode(this, 'MOLAR_MASS', Blockly.Arduino.ORDER_ATOMIC) || '1'; // Default to 1 to avoid division by zero
+    var moles = `(${mass} / ${molar_mass})`; // Menghitung n
+    return [`${moles}`, Blockly.Arduino.ORDER_NONE];
+};
