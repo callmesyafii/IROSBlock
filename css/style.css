@@ -155,7 +155,7 @@ input.blocklyhtmlinput {
 } 
 
 #content_blocks{
-  height: 620px !important;
+  height: 85% !important;
   overflow: auto;
 }
 
