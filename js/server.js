@@ -64,7 +64,7 @@ app.post("/generate", async (req, res) => {
         return res.status(400).json({ error: "No code provided" });
     }
 
-    const projectPath = path.join(projectsDir, "esp_project");
+    const projectPath = path.join(projectsDir, "esp_projects");
     const srcPath = path.join(projectPath, "src");
     const mainFilePath = path.join(srcPath, "main.cpp");
     const iniFilePath = path.join(projectPath, "platformio.ini");
@@ -77,20 +77,25 @@ app.post("/generate", async (req, res) => {
         await fs.writeFile(mainFilePath, code);
 
         // Buat atau update platformio.ini
-        const iniContent = `[env:esp32dev]
+        const iniContent = `[env:esp32doit-devkit-v1]
 platform = espressif32
-board = esp32dev
+board = esp32doit-devkit-v1
 framework = arduino
-lib_deps =
-    me-no-dev/AsyncTCP
-    me-no-dev/ESPAsyncWebServer
-    adafruit/Adafruit Unified Sensor
-    adafruit/DHT sensor library
+lib_deps = 
+	arduino-libraries/WiFi@^1.2.7
+	me-no-dev/ESPAsyncWebServer@^3.6.0
+	esp32async/AsyncTCP@^3.3.6
+	adafruit/Adafruit Unified Sensor@^1.1.15
+	adafruit/DHT sensor library@^1.4.6
+build_flags =
+    -I.pio/libdeps/esp32dev/WiFi/src
+    -I.pio/libdeps/esp32dev/ESPAsyncWebServer/src
+    -I.pio/libdeps/esp32dev/AsyncTCP/src
 `;
         await fs.writeFile(iniFilePath, iniContent);
 
         console.log("Inisialisasi proyek...");
-        await execPromise("pio project init --board esp32dev", { cwd: projectPath });
+        await execPromise("pio project init --board esp32doit-devkit-v1", { cwd: projectPath });
 
         console.log("Menginstal library...");
         await execPromise("pio lib install", { cwd: projectPath });

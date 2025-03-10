@@ -1,0 +1,5 @@
+me-no-dev/ESPAsyncWebServer@^3.6.0
+adafruit/DHT sensor library@^1.4.6
+adafruit/Adafruit Unified Sensor@^1.1.15
+esp32async/AsyncTCP@^3.3.6
+arduino-libraries/WiFi@^1.2.7
