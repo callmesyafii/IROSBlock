@@ -86,6 +86,7 @@ lib_deps =
     esphome/ESPAsyncWebServer-esphome
     adafruit/Adafruit Unified Sensor
     adafruit/DHT sensor library
+    miguel5612/MQUnifiedsensor@^3.0.0
 `;
         await fs.writeFile(iniFilePath, iniContent);
 

@@ -1,4 +1,5 @@
+miguel5612/MQUnifiedsensor@^3.0.0
 adafruit/DHT sensor library
 adafruit/Adafruit Unified Sensor
-me-no-dev/AsyncTCP
 esphome/ESPAsyncWebServer-esphome
+me-no-dev/AsyncTCP

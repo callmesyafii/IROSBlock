@@ -841,12 +841,39 @@
     <!--block type="lcd_scrolldisplayleft"></block-->
     <block type="lcd_switch_scroll"></block>
     <!--block type="lcd_autoscroll"></block>
-<block type="lcd_noautoscroll"></block-->
+    <block type="lcd_noautoscroll"></block-->
     <!--block type="lcd_lefttoright"></block-->
     <!--block type="lcd_righttoleft"></block-->
 </category>
+<category id="category_ir_sensor">
+    <block type="ir_receiver_init"></block>
+    <block type="ir_transmitter_init"></block>
+    <block type="ir_read_signal">
+        <value name="PIN">
+            <block type="math_number">
+                <field name="NUM">2</field>
+            </block>
+        </value>
+    </block>
+    <block type="ir_send_signal">
+        <value name="PIN">
+            <block type="math_number">
+                <field name="NUM">3</field>
+            </block>
+        </value>
+        <value name="CODE">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>
+    </block>
+    <block type="ir_available"></block>
+    <block type="ir_get_code"></block>
+</category>
 <category id="category_other_sensor">
     <block type="dht_read"></block>
+    <block type="gas_read"></block>
+    <block type="ldr_read"></block>
 </category>
 <sep></sep>
 <category id="category_logic">

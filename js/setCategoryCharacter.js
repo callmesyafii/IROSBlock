@@ -30,6 +30,7 @@ function setCategoryCharacter() {
   $('#category_neopixel').attr('name',Blockly.Msg.CATEGORY_NEOPIXEL);
   $('#category_i2c_matrix').attr('name',Blockly.Msg.CATEGORY_I2C_MATRIX);
   $('#category_i2c_sevenseg').attr('name',Blockly.Msg.CATEGORY_I2C_SEVENSEG);
+  $('#category_ir_sensor').attr('name',Blockly.Msg.CATEGORY_IR_SENSOR);
   $('#category_mpr121').attr('name',Blockly.Msg.CATEGORY_MPR121);
   $('#category_other_sensor').attr('name',Blockly.Msg.CATEGORY_OTHER_SENSOR);
   $('#category_loops').attr('name',Blockly.Msg.CATEGORY_LOOPS);
